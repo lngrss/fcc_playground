@@ -26,6 +26,14 @@ app.get('/', function(req, res) {
 /** 4) Serve static assets  */
 app.use(express.static(__dirname + '/public'));
 
+/** 7) Root-level Middleware - A logger */
+//  place it before all the routes !
+
+app.use(function(req, res, next) {
+    console.log(req.method + " " + req.path + " - " + req.ip);
+    next();
+})
+
 /** 5) serve JSON on a specific route */
 /** 6) Use the .env file to configure the app */
 
@@ -38,12 +46,6 @@ app.get('/json', function(req, res) {
         console.log('If false', process.env.MESSAGE_STYLE)
     }
 })
-
- 
- 
-/** 7) Root-level Middleware - A logger */
-//  place it before all the routes !
-
 
 /** 8) Chaining middleware. A Time server */
 
