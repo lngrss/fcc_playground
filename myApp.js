@@ -1,7 +1,8 @@
 
 var express = require('express');
 var app = express();
-const dotenv = require("dotenv");
+const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
 
 dotenv.config();
 // --> 7)  Mount the Logger middleware here
@@ -34,6 +35,10 @@ app.use(function(req, res, next) {
     next();
 })
 
+/** 11) Get ready for POST Requests - the `body-parser` */
+// place it before all the routes !
+app.use(bodyParser.urlencoded({extended: false}));
+
 /** 5) serve JSON on a specific route */
 /** 6) Use the .env file to configure the app */
 
@@ -63,9 +68,6 @@ app.get('/:word/echo', function(req, res) {
 app.route('/name').get(function(req, res) {
     res.json({"name": req.query.first + ' ' + req.query.last});
 })
-  
-/** 11) Get ready for POST Requests - the `body-parser` */
-// place it before all the routes !
 
 
 /** 12) Get data form POST  */
