@@ -40,15 +40,18 @@ app.use(function(req, res, next) {
 app.get('/json', function(req, res) {
     if (process.env.MESSAGE_STYLE === 'uppercase') {
         res.json({"message": "HELLO JSON"});
-        console.log('If true', process.env.MESSAGE_STYLE)
     } else {
         res.json({"message": "Hello json"});
-        console.log('If false', process.env.MESSAGE_STYLE)
     }
 })
 
 /** 8) Chaining middleware. A Time server */
-
+app.get('/now', function(req, res, next) {
+    req.time = new Date().toString();
+    next();
+}, function(req, res) {
+    res.json({time: req.time})
+})
 
 /** 9)  Get input from client - Route parameters */
 
