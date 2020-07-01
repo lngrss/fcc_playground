@@ -32,8 +32,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(function(req, res, next) {
     console.log(req.method + " " + req.path + " - " + req.ip);
-    console.log('Response ', res);
-    console.log('Request ', req);
+    console.log('Request Body ', req.body);
     next();
 })
 
