@@ -68,10 +68,10 @@ app.get('/:word/echo', function(req, res) {
 // /name?first=<firstname>&last=<lastname>
 app.route('/name').post(function(req, res) {
     console.log('Made it in the post function');
-    console.log('Request ', req);
-    console.log('Made it after the request log');
-    console.log('Response ', res);
-    res.json({"name": req.body.first + ' ' + req.body.last});
+    // console.log('Request ', req);
+    // console.log('Made it after the request log');
+    // console.log('Response ', res);
+    // res.json({"name": req.body.first + ' ' + req.body.last});
 })
 
 // .get(function(req, res) {
