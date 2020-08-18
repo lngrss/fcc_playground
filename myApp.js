@@ -32,7 +32,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(function(req, res, next) {
     console.log(req.method + " " + req.path + " - " + req.ip);
-    // console.log('Request Body ', req.body);
+    console.log('Request Body ', req.body);
     next();
 })
 
@@ -67,7 +67,7 @@ app.get('/:word/echo', function(req, res) {
 
 /** 10) Get input from client - Query parameters */
 // /name?first=<firstname>&last=<lastname>
-app.route('/name').post(function(req, res) {
+app.post('/name', function(req, res) {
     // console.log('Made it in the post function');
     console.log('Request ', req.body);
     // console.log('Made it after the request log');
