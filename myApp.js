@@ -69,7 +69,7 @@ app.get('/:word/echo', function(req, res) {
 // /name?first=<firstname>&last=<lastname>
 app.route('/name').post(function(req, res) {
     // console.log('Made it in the post function');
-    // console.log('Request ', req.body);
+    console.log('Request ', req.body);
     // console.log('Made it after the request log');
     res.json({"name": req.body.first + ' ' + req.body.last});
 })
