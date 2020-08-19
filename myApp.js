@@ -6,15 +6,14 @@ var bodyParser = require('body-parser');
 
 dotenv.config();
 // --> 7)  Mount the Logger middleware here
-app.use(function(req, res, next) {
-    console.log(req.method + " " + req.path + " - " + req.ip);
-    console.log('Request Body ', req.body);
-    next();
-})
-
-// --> 11)  Mount the body-parser middleware  here
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(function(req, res, next) {
+    console.log(req.method + " " + req.path + " - " + req.ip);
+    next();
+})
+app.use(express.static(__dirname + '/public'));
+// --> 11)  Mount the body-parser middleware  here
 
 /** 1) Meet the node console. */
 console.log('Hello World');
@@ -30,7 +29,7 @@ app.get('/', function(req, res) {
 })
 
 /** 4) Serve static assets  */
-app.use(express.static(__dirname + '/public'));
+
 
 /** 7) Root-level Middleware - A logger */
 //  place it before all the routes !
@@ -68,7 +67,7 @@ app.get('/:word/echo', function(req, res) {
 // /name?first=<firstname>&last=<lastname>
 app.post('/name', function(req, res) {
     // console.log('Made it in the post function');
-    console.log('Request ', req.body);
+    // console.log('Request ', req.body);
     // console.log('Made it after the request log');
     res.json({"name": req.body.first + ' ' + req.body.last});
 })
